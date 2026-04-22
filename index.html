@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffd6e0, #fff1f5, #e6f7ff);
+    color: #444;
+}
+
+/* PASSWORD */
+#lockScreen {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999;
+}
+
+input, button {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+button {
+    background: #ff6b81;
+    color: white;
+    cursor: pointer;
+}
+
+/* MUSIC OVERLAY */
+#musicOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.play-box {
+    text-align: center;
+    padding: 70px 40px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    cursor: pointer;
+    animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+    50% { transform: translateY(-8px); }
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+/* MEMORY SECTION */
+.memory-grid {
+    position: relative;
+    width: 100%;
+    height: 650px;
+}
+
+/* FLOAT ANIMATION */
+@keyframes floaty {
+    0% { transform: translateY(0px) rotate(var(--rot)); }
+    50% { transform: translateY(-8px) rotate(var(--rot)); }
+    100% { transform: translateY(0px) rotate(var(--rot)); }
+}
+
+/* POLAROID */
+.polaroid {
+    position: absolute;
+    width: 180px;
+    background: white;
+    padding: 10px 10px 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    animation: floaty 4s ease-in-out infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* hover */
+.polaroid:hover {
+    transform: scale(1.08) rotate(0deg);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    z-index: 10;
+}
+
+/* media */
+.polaroid img,
+.polaroid video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* POSITIONS (like your layout) */
+.p1 { top: 20px; left: 40px; --rot: -8deg; width:300px ; height: 400px; }
+.p2 { top: 20px; right: 15%; --rot: 6deg; height: 200px; }
+.p3 { top: 250px; left: 35%; --rot: -6deg; width: 400px ; height: 220px; }
+.p4 { top: 120px; right: 20px; --rot: 5deg; height: 400px; }
+.p5 { top: 280px; right: 25%; --rot: -4deg; height: 260px; }
+.p6 { top: 0px; left: 20%; --rot: 6deg; width: 400px ; height: 220px; }
+
+/* QUOTES */
+.quote {
+    background: white;
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 12px;
+    max-width: 300px;
+}
+
+/* LETTER */
+.letter {
+    background: white;
+    padding: 15px;
+    margin: 15px;
+    border-left: 5px solid #ff9aa2;
+    cursor: pointer;
+}
+
+.hidden { display: none; }
+
+/* VINYL */
+.vinyl {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #222 40%, #444 60%, #000 100%);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.vinyl::after {
+    content: "💖";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spin {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* HEARTS */
+.heart {
+    position: fixed;
+    font-size: 20px;
+    animation: floatUp 1s ease-out forwards;
+}
+
+@keyframes floatUp {
+    to { transform: translateY(-100px); opacity: 0; }
+}
+
+footer {
+    text-align: center;
+    font-family: 'Patrick Hand', cursive;
+    text-align: center;
+    padding: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD -->
+<div id="lockScreen">
+    <h2>Enter Password 💌</h2>
+    <input type="password" id="password" placeholder="Hint: My phone's passcode 💭">
+    <button onclick="checkPassword()">Enter</button>
+</div>
+
+<!-- MUSIC -->
+<div id="musicOverlay">
+    <div class="play-box" onclick="startMusic()">
+        <h2>Alohomora 💖</h2>
+        <p>WELCOME MONMON</p>
+</p>Tap To ENTER our lil virtual memory lane</p>
+    </div>
+</div>
+
+<div id="content" style="display:none;">
+
+<header>
+    <h1>Hola..... I made this for you (actually CGPT did) 💗</h1>
+    <p>Ik it feels like a chaos rn but everything will get back to normal</p>
+</p>just little things that remind me of you</p>
+
+</header>
+
+<section>
+    <h2 style="text-align:center;">📸 Our Memories</h2>
+
+    <div class="memory-grid">
+        <div class="polaroid p1"><img src="photo1.jpg"></div>
+        <div class="polaroid p2"><img src="photo2.jpg"></div>
+        <div class="polaroid p3"><img src="photo3.jpg"></div>
+
+        <div class="polaroid p4">
+            <video src="memory1.mp4" autoplay loop muted playsinline></video>
+        </div>
+
+        <div class="polaroid p5">
+            <video src="memory2.mp4" autoplay loop muted playsinline></video>
+        </div>
+
+        <div class="polaroid p6"><img src="photo4.jpg"></div>
+    </div>
+</section>
+
+    <h2>💌</h2>
+   <div class="letter" onclick="toggleLetter()">
+    <span class="open-text">open this 💌</span>
+        <p id="letterText" class="hidden">
+           Hey, i hope that on 22nd u are reading this cuz in last 3 months we havent talked properly, didnt meet eachother and god knows what we have been through, CRYING on nights when we remember each other (hehe still ur crybaby) but yea loosing u is/was never on my bucketlist... I MISS YOU <3, I really do... I hope that whatever u are doing may make u happy cuz atleast one of us should be happy... IAnd talking about miscommunication HAHAHA u and my mom had enough chatting...... I just wanna make u remind that for me u are still my raspberry, BOOBOO, Lil rashu, Hermione and kuku. For me u are my priority, ik its been lil hard for us (too muchy) but "IT SHALL PASS TO"
+YEA blabbering alot as always cuz i wanna say soo much but this space and ur attention span is too little! And also i dont want to waste ur time in reading some shit. BUT JUST TO LET UK, I had fight with mom cuz i said,"i would not be happy if rashi haven't wished me on my bday" and she replied with "Amey gamey etlu kariye toh bhi u can say this to me on my face !!!!" And CLASH, It wasnt ur fault. I just wanna let uk ke the orgami u gave me was more meaningful to me than the letters and everything, ofc those guys did so great but how can i just explain it to everyone that i would feel not the same if "YOU" havent did all that. Im thodok gandharo u say but i will always stay YOUR bunbuns right  ? 
+        </p>
+    </div>
+</section>
+
+    <h2 class="cute-heading">💖 little things</h2>
+    <div class="quote">You feel like home to me.</div>
+    <div class="quote">Even small things remind me of you.</div>
+    <div class="quote">You matter more than you think.</div>
+</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hidden Memory Lane 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/harry-potter" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #d6f0ff, #e6f7ff, #f0fbff);
+}
+
+/* BUTTON */
+.trigger {
+    text-align: center;
+    margin: 100px 0;
+}
+
+.trigger button {
+    padding: 12px 25px;
+    border: none;
+    background: #ff6b81;
+    color: white;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* HIDDEN SECTION */
+.memory-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease;
+}
+
+.memory-wrapper.show {
+    max-height: 3000px;
+}
+
+/* PARALLAX BG */
+.memory-lane {
+    padding: 200px 
+    background-image: url('bg.jpg'); /* add soft image */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/* 📰 PARALLAX + NEWSPAPER */
+.memory-lane {
+    padding: 13px 20px;
+    background-image: url('bg.jpg'); /* change this */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.newspaper-memory {
+    background: #fdf6e3;
+    padding: 30px;
+    margin: auto;
+    max-width: 900px;
+    border-radius: 10px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* ✨ HEADING */
+.memory-title {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 42px;
+    color: #ff4d6d;
+    margin-bottom: 30px;
+}
+
+/* 📸 KEEP YOUR LAYOUT */
+.memory-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin:10px 0;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s ease;
+}
+
+.memory-item.reverse {
+    flex-direction: row-reverse;
+}
+
+
+/* TEXT */
+.memory-text {
+    max-width: 300px;
+    color: #333;
+    opacity: 0;
+    transition: 1s ease;
+}
+
+/* ANIMATION */
+.memory-item.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.memory-item.show .memory-text {
+    font-family: 'Harry Potter', cursive;
+    font-size: 30px;
+    letter-spacing: 2px;
+    color: #3b2f2f;
+
+    opacity: 1;
+}
+
+
+/* MOBILE */
+@media(max-width: 768px){
+    .memory-item {
+        flex-direction: column !important;
+        text-align: center;
+}
+    /* DEPTH EFFECT */
+.memory-img {
+    perspective: 1000px;
+}
+
+.memory-img img {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+/* hover lift */
+.memory-img:hover img {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+
+}
+.memory-lane {
+    padding-bottom: 100px;
+}
+/* 🖼️ PHOTO BORDER (NEWSPAPER LOOK) */
+.memory-img {
+    background: #fff;
+    padding: 10px;
+    border: 10px solid #ddd;
+    box-shadow: 
+        0 8px 20px rgba(0,0,0,0.15),
+        inset 0 0 5px rgba(0,0,0,0.05);
+    border-radius: 20px;
+}
+
+/* optional inner image polish */
+.memory-img img {
+    border-radius: 20px;
+}
+
+</style>
+</head>
+
+<body>
+<div class="trigger">
+    <button onclick="revealMemories()">open something special 💌</button>
+</div>
+
+<div class="memory-wrapper" id="memoryWrapper">
+
+<section class="memory-lane">
+
+<div class="newspaper-memory">
+
+<h2 class="memory-title">our memory lane 💗</h2>
+
+<div class="memory-item">
+    <div class="memory-img">
+        <img src="m1.jpg" style="width:638px; height:468px;">
+    </div>
+    <div class="memory-text">Our own POST GGM night.</div>
+</div>
+
+<div class="memory-item reverse">
+    <div class="memory-img">
+        <img src="m2.jpg" style="width: 437px; height:250px;">
+    </div>
+    <div class="memory-text">Our intial days when we had alot to talk in class but were shy enough not to...</div>
+</div>
+
+<div class="memory-item">
+    <div class="memory-img">
+
+        <video src="m3.mp4"
+style="
+    width:800px;
+    height:600px;
+    transform: rotate(90deg);
+"
+autoplay loop muted>
+</video>
+
+    </div>
+    <div class="memory-text">OHH Our post fights staircase walks!.</div>
+</div>
+
+<div class="memory-item reverse">
+    <div class="memory-img">
+        <img src="m4.jpg" style="width:310px; height:550px;">
+    </div>
+    <div class="memory-text">everything felt calm here.</div>
+</div>
+
+<div class="memory-item">
+    <div class="memory-img">
+       <video src="m5.mp4" autoplay loop muted playsinline; style="width:680px; height:740px;">
+
+    </div>
+    <div class="memory-text">i wish i could go back to this.</div>
+</div>
+
+<div class="memory-item reverse">
+    <div class="memory-img">
+        <img src="m6.jpg" style="width:459px; height:270px;">
+    </div>
+    <div class="memory-text">this one always makes me smile.</div>
+</div>
+
+</section>
+
+</div>
+
+
+<script>
+/* 3D DEPTH EFFECT */
+document.querySelectorAll('.memory-img').forEach(card => {
+
+    const img = card.querySelector('img');
+
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = -(y - centerY) / 15;
+        const rotateY = (x - centerX) / 15;
+
+        img.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        img.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+    });
+
+});
+
+/* REVEAL */
+function revealMemories(){
+    const wrapper = document.getElementById("memoryWrapper");
+    wrapper.classList.add("show");
+
+    setTimeout(() => {
+        wrapper.scrollIntoView({ behavior: "smooth" });
+    }, 300);
+}
+
+/* ANIMATION */
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+    });
+});
+
+document.querySelectorAll('.memory-item').forEach(el => {
+    observer.observe(el);
+});
+
+</script>
+
+</body>
+</html>
+<section>
+
+
+<footer>always you 💖</footer>
+
+</div>
+
+<audio id="bg-music" loop>
+    <source src="song.mp3">
+</audio>
+
+<div class="vinyl" onclick="toggleMusic()" id="vinyl"></div>
+
+<script>
+let music = document.getElementById("bg-music");
+let vinyl = document.getElementById("vinyl");
+let playing = false;
+
+function checkPassword(){
+    if(document.getElementById("password").value === "1234"){
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("content").style.display = "block";
+        document.getElementById("musicOverlay").style.display = "flex";
+    } else {
+        alert("wrong password 😅");
+    }
+}
+
+function startMusic(){
+    music.play();
+    vinyl.classList.add("spin");
+    document.getElementById("musicOverlay").style.display = "none";
+    playing = true;
+}
+
+function toggleMusic(){
+    if(playing){
+        music.pause();
+        vinyl.classList.remove("spin");
+    } else {
+        music.play();
+        vinyl.classList.add("spin");
+    }
+    playing = !playing;
+}
+
+function toggleLetter(){
+    document.getElementById("letterText").classList.toggle("hidden");
+}
+
+/* HEART CLICK */
+document.addEventListener("click", function(e){
+    let heart = document.createElement("div");
+    heart.innerHTML = "💖";
+    heart.className = "heart";
+    heart.style.left = e.clientX + "px";
+    heart.style.top = e.clientY + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 1000);
+});
+</script>
+
+</body>
+</html>
